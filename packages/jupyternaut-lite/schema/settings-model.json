@@ -229,6 +229,12 @@
       "type": "boolean",
       "default": true
     },
+    "completionDisableReasoning": {
+      "title": "Disable Reasoning For Completions",
+      "description": "Ask the completion model to answer without thinking first (sends reasoning effort 'none'). Makes reasoning models such as DeepSeek V4.1 Flash answer instantly. Providers that do not support reasoning settings may reject the request.",
+      "type": "boolean",
+      "default": false
+    },
     "toolsEnabled": {
       "title": "Tools Enabled",
       "description": "Allow AI to use tools like notebook operations and file management",

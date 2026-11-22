@@ -143,7 +143,12 @@ export class AICompletionProvider implements IInlineCompletionProvider {
         model: this._model,
         prompt: completionPrompt,
         instructions: this.systemPrompt,
-        temperature: providerConfig.temperature || 0.3
+        temperature: providerConfig.temperature || 0.3,
+        // Reasoning models think before answering, which is too slow for
+        // inline completions; let the user ask for an instant answer.
+        ...(this._settingsModel.config.completionDisableReasoning
+          ? { reasoning: 'none' as const }
+          : {})
       });
 
       // Clean up FIM tags and code block markers. Strip only the fence lines:

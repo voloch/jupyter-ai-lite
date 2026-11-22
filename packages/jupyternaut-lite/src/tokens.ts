@@ -406,6 +406,8 @@ export interface IAIConfig {
   useSameProviderForChatAndCompleter: boolean;
   // When true, completions are only requested on an explicit invoke, never while typing
   completionManualTriggerOnly: boolean;
+  // When true, completion requests ask the model not to reason (reasoning: 'none')
+  completionDisableReasoning: boolean;
   // Global settings
   systemPrompt: string;
   completionSystemPrompt: string;

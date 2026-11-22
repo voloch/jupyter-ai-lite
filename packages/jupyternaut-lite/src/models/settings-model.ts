@@ -18,6 +18,7 @@ export class AISettingsModel extends VDomModel implements IAISettingsModel {
     activeCompleterProvider: undefined,
     useSameProviderForChatAndCompleter: true,
     completionManualTriggerOnly: true,
+    completionDisableReasoning: false,
     toolsEnabled: true,
     systemPrompt: `You are Jupyternaut, an AI coding assistant built specifically for the JupyterLab environment.
 

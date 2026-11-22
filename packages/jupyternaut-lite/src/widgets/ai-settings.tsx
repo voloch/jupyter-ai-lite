@@ -559,6 +559,23 @@ const AISettingsComponent: React.FC<IAISettingsComponentProps> = ({
                       )}
                     />
 
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          checked={config.completionDisableReasoning}
+                          onChange={e =>
+                            handleConfigUpdate({
+                              completionDisableReasoning: e.target.checked
+                            })
+                          }
+                          color="primary"
+                        />
+                      }
+                      label={trans.__(
+                        'Disable reasoning for completions (instant answers)'
+                      )}
+                    />
+
                     {!config.useSameProviderForChatAndCompleter && (
                       <FormControl fullWidth>
                         <InputLabel>
