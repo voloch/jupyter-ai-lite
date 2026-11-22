@@ -542,6 +542,23 @@ const AISettingsComponent: React.FC<IAISettingsComponentProps> = ({
                       )}
                     />
 
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          checked={config.completionManualTriggerOnly}
+                          onChange={e =>
+                            handleConfigUpdate({
+                              completionManualTriggerOnly: e.target.checked
+                            })
+                          }
+                          color="primary"
+                        />
+                      }
+                      label={trans.__(
+                        'Complete on demand only (no completions while typing)'
+                      )}
+                    />
+
                     {!config.useSameProviderForChatAndCompleter && (
                       <FormControl fullWidth>
                         <InputLabel>

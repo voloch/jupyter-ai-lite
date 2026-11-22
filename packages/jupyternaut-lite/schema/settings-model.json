@@ -223,6 +223,12 @@
       "type": "boolean",
       "default": true
     },
+    "completionManualTriggerOnly": {
+      "title": "Complete On Demand Only",
+      "description": "Only request completions when explicitly invoked (default Alt+\\), never while typing",
+      "type": "boolean",
+      "default": true
+    },
     "toolsEnabled": {
       "title": "Tools Enabled",
       "description": "Allow AI to use tools like notebook operations and file management",

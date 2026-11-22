@@ -7,7 +7,8 @@ import {
   CompletionHandler,
   IInlineCompletionContext,
   IInlineCompletionList,
-  IInlineCompletionProvider
+  IInlineCompletionProvider,
+  InlineCompletionTriggerKind
 } from '@jupyterlab/completer';
 import { NotebookPanel } from '@jupyterlab/notebook';
 import { generateText, type LanguageModel } from 'ai';
@@ -96,6 +97,15 @@ export class AICompletionProvider implements IInlineCompletionProvider {
     context: IInlineCompletionContext
   ): Promise<IInlineCompletionList> {
     if (!this._model) {
+      return { items: [] };
+    }
+
+    // Every request sends the whole notebook, so skip automatic (as-you-type)
+    // triggers when the user only wants completions on demand.
+    if (
+      this._settingsModel.config.completionManualTriggerOnly &&
+      context.triggerKind !== InlineCompletionTriggerKind.Invoke
+    ) {
       return { items: [] };
     }
 

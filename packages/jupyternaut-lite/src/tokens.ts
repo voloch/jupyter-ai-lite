@@ -404,6 +404,8 @@ export interface IAIConfig {
   activeCompleterProvider?: string; // Provider for completions (if different)
   // When true, use the same provider for chat and completions
   useSameProviderForChatAndCompleter: boolean;
+  // When true, completions are only requested on an explicit invoke, never while typing
+  completionManualTriggerOnly: boolean;
   // Global settings
   systemPrompt: string;
   completionSystemPrompt: string;
