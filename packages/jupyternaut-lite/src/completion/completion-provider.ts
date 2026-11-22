@@ -146,12 +146,14 @@ export class AICompletionProvider implements IInlineCompletionProvider {
         temperature: providerConfig.temperature || 0.3
       });
 
-      // Clean up FIM tags and code block markers
+      // Clean up FIM tags and code block markers. Strip only the fence lines:
+      // many models wrap the completion itself in ```lang ... ```, and removing
+      // the whole fenced block would discard the code.
       const cleanCompletion = completion
         .replace(/<PRE>/g, '')
         .replace(/<SUF>/g, '')
         .replace(/<MID>/g, '')
-        .replace(/```[\s\S]*?```/g, '')
+        .replace(/```[\w+-]*[ \t]*\n?/g, '')
         .trim();
 
       const items = [
