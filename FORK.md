@@ -17,6 +17,23 @@ jupyterlab/jupyter-ai#968 was closed without one.
 
 Set `completionManualTriggerOnly` to `false` to get upstream behaviour back.
 
+The completion cleanup also strips only Markdown fence lines (```` ```python ````, ```` ``` ````)
+instead of whole fenced blocks. Upstream's `/```[\s\S]*?```/` deleted the code when a model
+(e.g. `qwen/qwen3-coder-next`) wrapped its completion in a fence, so nothing was shown.
+
+**Shortcut:** on the Linux/Chrome setup this was built for, JupyterLab never matched the
+default `Alt \` binding (nor `Alt /`), while `Alt W` worked. The working binding is a user
+shortcut in `~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension/shortcuts.jupyterlab-settings`:
+
+```json
+{ "shortcuts": [ { "command": "inline-completer:invoke", "keys": ["Alt I"],
+                   "selector": ".jp-mod-completer-enabled", "preventDefault": true } ] }
+```
+
+**Secrets manager:** turn off "Use secrets manager" in the Jupyternaut settings.
+`jupyter-secrets-manager` defaults to an in-memory store, so the key vanishes on page
+reload and the completer silently has no model.
+
 ## Build and install
 
 ```bash
