@@ -21,6 +21,11 @@ The completion cleanup also strips only Markdown fence lines (```` ```python ```
 instead of whole fenced blocks. Upstream's `/```[\s\S]*?```/` deleted the code when a model
 (e.g. `qwen/qwen3-coder-next`) wrapped its completion in a fence, so nothing was shown.
 
+`completionDisableReasoning` (default `false`, switch in the settings panel) passes the AI SDK's
+`reasoning: 'none'` to completion requests (`reasoning_effort: "none"` on OpenAI-compatible
+providers such as OpenRouter), so reasoning models like DeepSeek V4.1 Flash answer without
+thinking. Off by default because providers without reasoning support may reject the parameter.
+
 **Shortcut:** on the Linux/Chrome setup this was built for, JupyterLab never matched the
 default `Alt \` binding (nor `Alt /`), while `Alt W` worked. The working binding is a user
 shortcut in `~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension/shortcuts.jupyterlab-settings`:
